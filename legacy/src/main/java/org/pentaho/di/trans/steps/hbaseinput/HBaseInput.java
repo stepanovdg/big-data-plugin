@@ -208,8 +208,8 @@ public class HBaseInput extends BaseStep implements StepInterface {
       if ( m_meta.getColumnFilters() != null && m_meta.getColumnFilters().size() > 0 ) {
 
         if ( m_tableMapping.isTupleMapping() ) {
-          logBasic( BaseMessages
-              .getString( HBaseInputMeta.PKG, "HBaseInput.Error.FiltersNotApplicableWithTupleMapping" ) );
+          /*logBasic( BaseMessages
+              .getString( HBaseInputMeta.PKG, "HBaseInput.Error.FiltersNotApplicableWithTupleMapping" ) );  */
         } else {
           HBaseInputData.setScanFilters( m_hbAdmin, m_meta.getColumnFilters(), m_meta.getMatchAnyFilter(),
               m_columnsMappedByAlias, this );

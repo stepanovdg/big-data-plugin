@@ -794,8 +794,12 @@ public class MappingEditor extends Composite implements ConfigurationProducer {
         } else {
           theMapping.setKeyName( alias );
         }
+        String combinedName = HBaseValueMeta.SEPARATOR + HBaseValueMeta.SEPARATOR + alias;
+        HBaseValueMeta vm = new HBaseValueMeta( combinedName, 0, -1, -1 );
+        vm.setKey( true );
         try {
           theMapping.setKeyTypeAsString( type );
+          theMapping.addMappedColumn( vm, isTupleMapping );
         } catch ( Exception ex ) {
           // Ignore
         }

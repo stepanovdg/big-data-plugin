@@ -384,7 +384,7 @@ public class HBaseInputData extends BaseStepData implements StepDataInterface {
               fieldTypeS, fieldAliasS, mappedCol.getHBaseTypeDesc() ) );
         }
       }
-
+       //
       try {
         hbAdmin.addColumnFilterToScan( cf, mappedCol, vars, matchAnyFilter );
       } catch ( Exception ex ) {
