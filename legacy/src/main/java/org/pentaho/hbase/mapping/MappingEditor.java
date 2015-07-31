@@ -686,11 +686,11 @@ public class MappingEditor extends Composite implements ConfigurationProducer {
     int tupleIdCount = 0;
     if ( nrNonEmpty == 5 ) {
       for ( int i = 0; i < nrNonEmpty; i++ ) {
-        if ( m_fieldsView.getNonEmpty( i ).getText( 1 ).equals( "KEY" )
-            || m_fieldsView.getNonEmpty( i ).getText( 1 ).equals( "Family" )
-            || m_fieldsView.getNonEmpty( i ).getText( 1 ).equals( "Column" )
-            || m_fieldsView.getNonEmpty( i ).getText( 1 ).equals( "Value" )
-            || m_fieldsView.getNonEmpty( i ).getText( 1 ).equals( "Timestamp" ) ) {
+        if ( m_fieldsView.getNonEmpty( i ).getText( 1 ).equals( Mapping.TuppleMapping.KEY )
+            || m_fieldsView.getNonEmpty( i ).getText( 1 ).equals( Mapping.TuppleMapping.FAMILY )
+            || m_fieldsView.getNonEmpty( i ).getText( 1 ).equals( Mapping.TuppleMapping.COLUMN )
+            || m_fieldsView.getNonEmpty( i ).getText( 1 ).equals( Mapping.TuppleMapping.VALUE )
+            || m_fieldsView.getNonEmpty( i ).getText( 1 ).equals( Mapping.TuppleMapping.TIMESTAMP ) ) {
           tupleIdCount++;
         }
       }
@@ -799,6 +799,7 @@ public class MappingEditor extends Composite implements ConfigurationProducer {
         vm.setKey( true );
         try {
           theMapping.setKeyTypeAsString( type );
+          vm.setType( org.pentaho.di.trans.steps.hbaseinput.HBaseInputDialog.getKettleTypeByKeyType( theMapping.getKeyType() ) );
           theMapping.addMappedColumn( vm, isTupleMapping );
         } catch ( Exception ex ) {
           // Ignore

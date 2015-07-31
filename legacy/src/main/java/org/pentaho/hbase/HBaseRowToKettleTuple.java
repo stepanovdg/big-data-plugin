@@ -32,6 +32,7 @@ import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.row.RowDataUtil;
 import org.pentaho.di.core.row.RowMetaInterface;
 import org.pentaho.di.core.row.ValueMetaInterface;
+import org.pentaho.hbase.mapping.MappingAdmin;
 import org.pentaho.hbase.shim.api.HBaseValueMeta;
 import org.pentaho.hbase.shim.api.Mapping;
 import org.pentaho.hbase.shim.spi.HBaseBytesUtilShim;
@@ -160,10 +161,10 @@ public class HBaseRowToKettleTuple {
     if ( m_decodedTuples == null ) {
       m_decodedTuples = new ArrayList<Object[]>();
       m_keyIndex = outputRowMeta.indexOfValue( mapping.getKeyName() );
-      m_familyIndex = outputRowMeta.indexOfValue( "Family" );
-      m_colNameIndex = outputRowMeta.indexOfValue( "Column" );
-      m_valueIndex = outputRowMeta.indexOfValue( "Value" );
-      m_timestampIndex = outputRowMeta.indexOfValue( "Timestamp" );
+      m_familyIndex = outputRowMeta.indexOfValue( Mapping.TuppleMapping.FAMILY.toString() );
+      m_colNameIndex = outputRowMeta.indexOfValue( Mapping.TuppleMapping.COLUMN.toString() );
+      m_valueIndex = outputRowMeta.indexOfValue( Mapping.TuppleMapping.VALUE.toString() );
+      m_timestampIndex = outputRowMeta.indexOfValue( Mapping.TuppleMapping.TIMESTAMP.toString() );
 
       if ( !Const.isEmpty( mapping.getTupleFamilies() ) ) {
         String[] familiesS = mapping.getTupleFamilies().split( HBaseValueMeta.SEPARATOR );

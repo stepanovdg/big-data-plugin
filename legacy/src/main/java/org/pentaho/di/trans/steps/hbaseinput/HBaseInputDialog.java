@@ -79,6 +79,7 @@ import org.pentaho.hbase.mapping.MappingEditor;
 import org.pentaho.hbase.shim.api.ColumnFilter;
 import org.pentaho.hbase.shim.api.HBaseValueMeta;
 import org.pentaho.hbase.shim.api.Mapping;
+import org.pentaho.hbase.shim.api.Mapping.KeyType;
 import org.pentaho.hbase.shim.spi.HBaseConnection;
 
 /**
@@ -889,7 +890,7 @@ public class HBaseInputDialog extends BaseStepDialog implements StepDialogInterf
         HBaseValueMeta vm = m_mappedColumns.get( transMeta.environmentSubstitute( alias ) );
         if ( vm != null ) {
           vm.setType( getKettleTypeByKeyType( m_keyType ) );
-          String type = ValueMetaInterface.getTypeDesc( vm.getType() );
+          String type = ValueMeta.getTypeDesc( vm.getType() );
           tableItem.setText( 2, type );
           return vm;
         }
@@ -932,7 +933,7 @@ public class HBaseInputDialog extends BaseStepDialog implements StepDialogInterf
     return null;
   }
 
-  int getKettleTypeByKeyType( KeyType keyType ) {
+  public static int getKettleTypeByKeyType( Mapping.KeyType keyType ) {
     if ( keyType == null ) {
       return ValueMetaInterface.TYPE_NONE;
     }
@@ -950,15 +951,15 @@ public class HBaseInputDialog extends BaseStepDialog implements StepDialogInterf
       if ( keyType == Mapping.KeyType.UNSIGNED_DATE ) {
         return ValueMetaInterface.TYPE_DATE;
       }
-      return ValueMetaInterface.TYPE_LONG;
+      return ValueMetaInterface.TYPE_NUMBER;
     }
 
     if ( keyType == Mapping.KeyType.UNSIGNED_INTEGER ) {
-      return ValueMetaInterface.TYPE_LONG;
+      return ValueMetaInterface.TYPE_NUMBER;
     }
 
     if ( keyType == Mapping.KeyType.INTEGER ) {
-      return ValueMetaInterface.TYPE_LONG; // Kettle uses longs
+      return ValueMetaInterface.TYPE_NUMBER; // Kettle uses longs
     }
 
     if ( keyType == Mapping.KeyType.LONG || keyType == Mapping.KeyType.DATE ) {
@@ -966,7 +967,7 @@ public class HBaseInputDialog extends BaseStepDialog implements StepDialogInterf
         return ValueMetaInterface.TYPE_DATE;
       }
 
-      return ValueMetaInterface.TYPE_LONG;
+      return ValueMetaInterface.TYPE_NUMBER;
     }
     return ValueMetaInterface.TYPE_NONE;
   }
@@ -1342,7 +1343,7 @@ public class HBaseInputDialog extends BaseStepDialog implements StepDialogInterf
 
         if ( current != null && readFieldsFromMapping ) {
           TableItem item = new TableItem( m_fieldsView.table, SWT.NONE );
-          item.setText( 1, keyName );
+          item.setText( 1, m_keyName );
           item.setText( 2, "Y" );
           item.setText( 7, "N" );
           if ( current.getKeyType() == Mapping.KeyType.DATE || current.getKeyType() == Mapping.KeyType.UNSIGNED_DATE ) {
