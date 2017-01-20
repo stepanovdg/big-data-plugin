@@ -31,6 +31,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.net.URI;
 
 /**
  * Created by bryan on 5/28/15.
@@ -51,12 +52,13 @@ public class HadoopFileSystemFactoryImpl implements HadoopFileSystemFactory {
   }
 
   @Override public boolean canHandle( NamedCluster namedCluster ) {
-    String shimIdentifier = null; // TODO: Specify shim
+    String shimIdentifier = namedCluster.getShimIdentifier();
     return ( shimIdentifier == null && isActiveConfiguration ) || hadoopConfiguration.getIdentifier()
       .equals( shimIdentifier );
   }
 
-  @Override public HadoopFileSystem create( NamedCluster namedCluster ) throws IOException {
+  @Override
+  public HadoopFileSystem create( NamedCluster namedCluster, URI uri ) throws IOException {
     final HadoopShim hadoopShim = hadoopConfiguration.getHadoopShim();
     final Configuration configuration = hadoopShim.createConfiguration();
     String fsDefault;
@@ -93,7 +95,7 @@ public class HadoopFileSystemFactoryImpl implements HadoopFileSystemFactory {
       @Override
       public FileSystem getFileSystem() {
         try {
-          return (FileSystem) hadoopShim.getFileSystem( configuration ).getDelegate();
+          return (FileSystem) hadoopShim.getFileSystem( uri, configuration, null ).getDelegate();
         } catch ( IOException e ) {
           return null;
         }

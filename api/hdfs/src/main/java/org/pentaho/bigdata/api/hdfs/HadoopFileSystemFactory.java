@@ -25,11 +25,19 @@ package org.pentaho.bigdata.api.hdfs;
 import org.pentaho.big.data.api.cluster.NamedCluster;
 
 import java.io.IOException;
+import java.net.URI;
 
 /**
  * Created by bryan on 5/28/15.
  */
 public interface HadoopFileSystemFactory {
+
   boolean canHandle( NamedCluster namedCluster );
+
+  @Deprecated
   HadoopFileSystem create( NamedCluster namedCluster ) throws IOException;
+
+  default HadoopFileSystem create( NamedCluster namedCluster, URI uri ) throws IOException{
+    return create( namedCluster );
+  };
 }

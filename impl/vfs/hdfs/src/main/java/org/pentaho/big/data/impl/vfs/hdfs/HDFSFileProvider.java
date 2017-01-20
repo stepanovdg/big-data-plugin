@@ -113,7 +113,7 @@ public class HDFSFileProvider extends AbstractOriginatingFileProvider {
     }
     namedCluster.setMapr( MAPRFS.equals( name.getScheme() ) );
     try {
-      return new HDFSFileSystem( name, fileSystemOptions, hadoopFileSystemLocator.getHadoopFilesystem( namedCluster ) );
+      return new HDFSFileSystem( name, fileSystemOptions, hadoopFileSystemLocator.getHadoopFilesystem( namedCluster, name.getURI() ) );
     } catch ( ClusterInitializationException e ) {
       throw new FileSystemException( e );
     }

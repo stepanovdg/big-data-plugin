@@ -25,9 +25,16 @@ package org.pentaho.bigdata.api.hdfs;
 import org.pentaho.big.data.api.cluster.NamedCluster;
 import org.pentaho.big.data.api.initializer.ClusterInitializationException;
 
+import java.net.URI;
+
 /**
  * Created by bryan on 5/22/15.
  */
 public interface HadoopFileSystemLocator {
+  @Deprecated
   HadoopFileSystem getHadoopFilesystem( NamedCluster namedCluster ) throws ClusterInitializationException;
+
+  default HadoopFileSystem getHadoopFilesystem( NamedCluster namedCluster, URI uri ) throws ClusterInitializationException{
+     return getHadoopFilesystem( namedCluster );
+  }
 }

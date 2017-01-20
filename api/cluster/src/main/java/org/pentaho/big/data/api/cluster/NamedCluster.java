@@ -35,6 +35,13 @@ public interface NamedCluster extends Cloneable, VariableSpace {
 
   void setName( String name );
 
+  default String getShimIdentifier() {
+    return null;
+  }
+
+  default void setShimIdentifier( String shimIdentifier ) {
+  }
+
   void replaceMeta( NamedCluster nc );
 
   String getHdfsHost();
