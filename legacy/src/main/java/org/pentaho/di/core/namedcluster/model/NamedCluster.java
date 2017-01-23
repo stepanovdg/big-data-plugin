@@ -43,6 +43,9 @@ public class NamedCluster implements Cloneable, VariableSpace {
   private String name;
 
   @MetaStoreAttribute
+  private String shimIdentifier;
+
+  @MetaStoreAttribute
   private String hdfsHost;
   @MetaStoreAttribute
   private String hdfsPort;
@@ -285,6 +288,14 @@ public class NamedCluster implements Cloneable, VariableSpace {
 
   public boolean isMapr() {
     return mapr;
+  }
+
+  public String getShimIdentifier() {
+    return shimIdentifier;
+  }
+
+  public void setShimIdentifier( String shimIdentifier ) {
+    this.shimIdentifier = shimIdentifier;
   }
 
   @Override

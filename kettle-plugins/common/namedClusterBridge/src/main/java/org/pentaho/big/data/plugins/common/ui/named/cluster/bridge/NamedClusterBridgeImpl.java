@@ -198,6 +198,16 @@ public class NamedClusterBridgeImpl implements NamedCluster {
   }
 
   @Override
+  public String getShimIdentifier() {
+    return delegate.getShimIdentifier();
+  }
+
+  @Override
+  public void setShimIdentifier( String shimIdentifier ) {
+    delegate.setShimIdentifier( shimIdentifier );
+  }
+
+  @Override
   public NamedCluster clone() {
     return new NamedClusterBridgeImpl( delegate.clone() );
   }
