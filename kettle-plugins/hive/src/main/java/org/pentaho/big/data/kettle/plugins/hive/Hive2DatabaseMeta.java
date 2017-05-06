@@ -35,7 +35,7 @@ public class Hive2DatabaseMeta extends DatabaseMetaWithVersion {
   public static final String VIEW = "VIEW";
   public static final String VIRTUAL_VIEW = "VIRTUAL_VIEW";
   public static final String TRUNCATE_TABLE = "TRUNCATE TABLE ";
-  public static final int[] ACCESS_TYPE_LIST = new int[] { DatabaseMeta.TYPE_ACCESS_NATIVE };
+  public static final int[] ACCESS_TYPE_LIST = new int[] { DatabaseMeta.TYPE_ACCESS_NATIVE, DatabaseMeta.TYPE_ACCESS_PLUGIN };
   protected static final String JAR_FILE = "hive-jdbc-0.10.0-pentaho.jar";
   protected static final String DRIVER_CLASS_NAME = "org.apache.hive.jdbc.HiveDriver";
 

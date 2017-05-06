@@ -1,0 +1,17 @@
+<groupbox id="database-options-box" orient="vertical" flex="1"
+          xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+          xmlns:pen="http://www.pentaho.org/2008/xul">
+  <caption label="${DatabaseDialog.USER_SETTINGS}"/>
+  <label id="database-name-label" value="${DatabaseDialog.label.DatabaseName}"/>
+  <textbox pen:customclass="variabletextbox" id="database-name-text"/>
+  <label id="database-name-label" value="Named Cluster:"/>
+  <hbox>
+    <menulist id="namedcluster-menu-list" editable="false" label="namedcluster-label">
+      <menupopup>
+        <menuitem label="(Empty)" disabled="true"/>
+      </menupopup>
+    </menulist>
+    <button id="named-clusters-edit" label="Edit" onclick="fragmentHandler.editNamedCluster()"/>
+    <button id="named-clusters-new"  label="Add" onclick="fragmentHandler.createNamedCluster()"/>
+  </hbox>
+</groupbox>

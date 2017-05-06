@@ -53,4 +53,8 @@ public abstract class DatabaseMetaWithVersion extends BaseDatabaseMeta {
     return driverMajorVersion > majorVersion || ( driverMajorVersion == majorVersion
       && driver.getMinorVersion() >= minorVersion );
   }
+
+  @Override public String getXulOverlayFile() {
+    return "namedcluster";
+  }
 }

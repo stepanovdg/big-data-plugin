@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<overlay
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" xmlns:pen="http://www.pentaho.org/2008/xul">
+
+    <!--  ###############################################################################  -->
+    <!--     CONNECTION ACCESS LIST BOX: The box that contains the connection type list
+         and the access method list.                                                   -->
+    <!--  ###############################################################################  -->
+    <hbox id="connection-access-list-box" flex="1" insertinsteadof="connection-name-text">
+        <vbox id="type-box" flex="1">
+            <label id="connection-type-label" value="${DatabaseDialog.label.ConnectionType}" />
+            <listbox id="connection-type-list" flex="4" rows="11" onselect="dataHandler.loadAccessData()">
+            </listbox>
+            <label id="access-type-label" value="${DatabaseDialog.label.AccessMethod}" />
+            <listbox id="access-type-list" flex="2" rows="6" onselect="fragmentHandler.refreshOptions()">
+            </listbox>
+        </vbox>
+
+        <!--  ###############################################################################  -->
+        <!--     DATABASE OPTIONS BOX: The box that contains database specific attributes
+             necessary to connect to the database. This is the container that will be
+             replaced on change of the access method or connection type.                   -->
+        <!--  ###############################################################################  -->
+        <!--  This is the container that will be replaced on change of the access method  -->
+        <groupbox id="database-options-box" orient="vertical" flex="1">
+            <caption label="${DatabaseDialog.USER_SETTINGS}" />
+        </groupbox>
+    </hbox>
+
+
+</overlay>
